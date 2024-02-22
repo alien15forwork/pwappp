@@ -2,7 +2,7 @@
   "name": "Test PWA",
   "short_name": "Test PWA",
   "display": "standalone",
-  "start_url": "pwappp/index.html",
+  "start_url": "/pwappp/index.html",
   "theme_color": "#313131",
   "background_color": "#000000",
   "icons": [
