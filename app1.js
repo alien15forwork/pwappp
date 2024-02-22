@@ -9,7 +9,9 @@ let appPromptEvent = null
 window.addEventListener('beforeinstallprompt', e => {
     appPromptEvent = e
 })
- 
+window.addEventListener('load', () => {
+    alert(1)
+})
 // 点击下载按钮
 window.addEventListener('load', () => {
     if (appPromptEvent !== null) {
