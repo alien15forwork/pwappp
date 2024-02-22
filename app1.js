@@ -1,20 +1,35 @@
-// 点击时弹出浏览器自带的添加屏幕按钮
-import eventBus from '@/lib/evtbus'
 
-let deferredPrompt: any
-window.addEventListener('beforeinstallprompt', (e: any) => {
-  e.preventDefault();
-  deferredPrompt = e
-  eventBus.on('showAddDeskPrompt', () => {
-    // 显示提示，每个deferredPrompt.prompt只能使用一次
-    deferredPrompt.prompt()
-    deferredPrompt.userChoice.then((choiceResult: {[key: string]: any}) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('用户点击了安装，该deferredPrompt.prompt已被使用')
-      } else {
-        console.log('用户取消安装，该deferredPrompt.prompt仍可继续使用')
-      }
-      deferredPrompt = null
-    })
-  })
+// 下载按钮
+let installBtn = document.querySelector('.installApp')
+ 
+// 下载对象
+let appPromptEvent = null
+ 
+// 浏览器地址支持下载的话触发此事件
+window.addEventListener('beforeinstallprompt', e => {
+    appPromptEvent = e
 })
+ 
+// 点击下载按钮
+window.addEventListener('load', () => {
+    if (appPromptEvent !== null) {
+        // 调用安装
+        appPromptEvent.prompt()
+        // 回调
+        appPromptEvent.userChoice.then((res)=>{
+            if (res.outcome === 'accepted') {
+                console.log('install succeed')
+            }
+            else{
+                console.log('cancel install')
+            }
+            appPromptEvent = null
+        })
+    }
+})
+ 
+// 监听安装完成
+window.addEventListener('appinstalled',() => {})
+ 
+// 判断是否桌面打开
+if (window.matchMedia('(display-mode: standalone)').matches) {}
