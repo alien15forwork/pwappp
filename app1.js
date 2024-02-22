@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
 // 点击下载按钮
 window.addEventListener('load', () => {
     alert(2)
-    if (appPromptEvent !== null) {
+    if (appPromptEvent == null) {
         // 调用安装
         alert(3)
         appPromptEvent.prompt()
