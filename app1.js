@@ -20,7 +20,9 @@ window.addEventListener('load', () => {
         alert(3)
         appPromptEvent.prompt()
         // 回调
+        alert(4)
         appPromptEvent.userChoice.then((res)=>{
+            alert(5)
             if (res.outcome === 'accepted') {
                 console.log('install succeed')
             }
